@@ -20,18 +20,21 @@ export default {
   name: 'App',
   data(){
     return {
-      isAuthenticated: this.$session.has('jwt')
+      // isAuthenticated: this.$session.has('jwt')
+      isAuthenticated: this.$store.getters.isAuthenticated
     }
   },
   methods: {
     logout(){
       console.log("로그아웃 버튼 눌림")
-      this.$session.destroy()
+      // this.$session.destroy()
+      this.$store.dispatch('logout')
       this.$router.push('/login')
     },
   },
   updated(){
-    this.isAuthenticated = this.$session.has('jwt')
+    // this.isAuthenticated = this.$session.has('jwt')
+    this.isAuthenticated = this.$store.getters.isAuthenticated
   }
 }
 </script>

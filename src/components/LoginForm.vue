@@ -42,8 +42,11 @@ export default {
         axios.post('http://localhost:8000/api-token-auth/', this.credential)
         .then((res)=>{
           this.loading = true
-          this.$session.start()
-          this.$session.set('jwt', res.data.token)
+          // this.$session.start()
+          // this.$session.set('jwt', res.data.token)
+
+          this.$store.dispatch('login', res.data.token)
+
           router.push('/')
         })
         .catch((err)=>{
